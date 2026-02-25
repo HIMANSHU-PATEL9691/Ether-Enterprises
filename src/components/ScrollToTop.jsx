@@ -8,7 +8,7 @@ const ScrollToTop = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth", // smooth scroll (optional)
+      behavior: "auto", // agar instant chahiye to "auto"
     });
   }, [pathname]);
 

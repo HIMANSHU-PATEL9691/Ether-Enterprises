@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, Menu, X, Shield, Phone } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
@@ -17,13 +17,33 @@ const Header = () => {
   const { totalItems } = useCart();
   const location = useLocation();
 
+  const menuRef = useRef(null);
+
+  // ✅ Close on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMobileOpen(false);
+      }
+    };
+
+    if (mobileOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [mobileOpen]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
-      {/* Top bar */}
+      
+      {/* 🔝 Top bar */}
       <div className="bg-primary/10 border-b border-border">
         <div className="container mx-auto px-4 py-1.5 flex justify-between items-center text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5">
-            <Phone className="w-3 h-3" /> +91 98765 43210
+            <Phone className="w-3 h-3" /> +91 9691365052
           </span>
           <span>Free Installation on Orders Above ₹5,000</span>
         </div>
@@ -31,23 +51,30 @@ const Header = () => {
 
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          
+          {/* 🛡 Logo */}
           <Link to="/" className="flex items-center gap-2">
             <Shield className="w-8 h-8 text-primary" />
             <div>
-              <span className="font-display text-lg font-bold text-foreground">Ether</span>
-              <span className="font-display text-lg font-bold text-gradient"> Enterprises</span>
+              <span className="font-display text-lg font-bold text-foreground">
+                Ether
+              </span>
+              <span className="font-display text-lg font-bold text-gradient">
+                {' '}Enterprises
+              </span>
             </div>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* 💻 Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map(link => (
               <Link
                 key={link.path}
                 to={link.path}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location.pathname === link.path ? 'text-primary' : 'text-muted-foreground'
+                  location.pathname === link.path
+                    ? 'text-primary'
+                    : 'text-muted-foreground'
                 }`}
               >
                 {link.label}
@@ -55,9 +82,12 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Cart + Mobile toggle */}
+          {/* 🛒 Cart + Menu */}
           <div className="flex items-center gap-4">
-            <Link to="/cart" className="relative p-2 hover:bg-secondary rounded-lg transition-colors">
+            <Link
+              to="/cart"
+              className="relative p-2 hover:bg-secondary rounded-lg transition-colors"
+            >
               <ShoppingCart className="w-5 h-5 text-foreground" />
               {totalItems > 0 && (
                 <motion.span
@@ -69,24 +99,43 @@ const Header = () => {
                 </motion.span>
               )}
             </Link>
+
             <button
               className="md:hidden p-2 hover:bg-secondary rounded-lg"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Nav */}
+      {/* 🌑 Overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
+            onClick={() => setMobileOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* 📱 Mobile Nav */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            ref={menuRef}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden overflow-hidden bg-card border-t border-border"
+            className="md:hidden overflow-hidden bg-card border-t border-border z-50 relative"
           >
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-3">
               {navLinks.map(link => (

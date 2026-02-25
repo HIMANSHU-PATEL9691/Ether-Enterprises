@@ -48,7 +48,7 @@ const Contact = () => {
                 value={form.phone}
                 onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
                 className="w-full bg-secondary text-foreground rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary border border-border"
-                placeholder="+91 98765 43210"
+                placeholder="+91 9691365052"
                 maxLength={15}
               />
             </div>
@@ -83,8 +83,8 @@ const Contact = () => {
             <div className="gradient-card border border-border rounded-xl p-6">
               <h3 className="font-display font-semibold mb-4">Get in Touch</h3>
               <div className="space-y-4 text-sm">
-                <div className="flex items-center gap-3"><Phone className="w-5 h-5 text-primary" /><div><p className="text-muted-foreground">Phone</p><p className="font-medium">+91 98765 43210</p></div></div>
-                <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-primary" /><div><p className="text-muted-foreground">Email</p><p className="font-medium">info@etherentp.com</p></div></div>
+                <div className="flex items-center gap-3"><Phone className="w-5 h-5 text-primary" /><div><p className="text-muted-foreground">Phone</p><p className="font-medium">+91 9691365052</p></div></div>
+                <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-primary" /><div><p className="text-muted-foreground">Email</p><p className="font-medium">patel@123</p></div></div>
                 <div className="flex items-start gap-3"><MapPin className="w-5 h-5 text-primary mt-0.5" /><div><p className="text-muted-foreground">Address</p><p className="font-medium">123, Security Lane, Karol Bagh, New Delhi - 110005</p></div></div>
               </div>
             </div>
@@ -98,7 +98,7 @@ const Contact = () => {
             </div>
 
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/919691365052"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-success text-success-foreground font-semibold py-3.5 rounded-xl hover:opacity-90 transition-opacity w-full"

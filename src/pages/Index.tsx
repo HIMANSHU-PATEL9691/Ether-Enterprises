@@ -174,13 +174,13 @@ const Index = () => {
               <p className="text-muted-foreground mb-8 max-w-lg mx-auto">Our security experts will help you find the perfect CCTV solution for your needs. Get a free consultation today!</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+919691365052"
                   className="inline-flex items-center gap-2 gradient-primary text-primary-foreground font-semibold px-8 py-3.5 rounded-xl hover:opacity-90 transition-opacity"
                 >
                   <Phone className="w-4 h-4" /> Call Now
                 </a>
                 <a
-                  href="https://wa.me/919876543210"
+                  href="https://wa.me/919691365052"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-success text-success-foreground font-semibold px-8 py-3.5 rounded-xl hover:opacity-90 transition-opacity"

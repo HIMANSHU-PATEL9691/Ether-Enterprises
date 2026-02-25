@@ -42,8 +42,8 @@ const Footer = () => (
         <div>
           <h4 className="font-display font-semibold mb-4">Contact Us</h4>
           <div className="flex flex-col gap-3 text-sm text-muted-foreground">
-            <span className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +91 98765 43210</span>
-            <span className="flex items-center gap-2"><Mail className="w-4 h-4 text-primary" /> info@etherentp.com</span>
+            <span className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +91 9691365052</span>
+            <span className="flex items-center gap-2"><Mail className="w-4 h-4 text-primary" /> patel@123</span>
             <span className="flex items-start gap-2"><MapPin className="w-4 h-4 text-primary mt-0.5" /> 123, Security Lane, New Delhi, India</span>
           </div>
         </div>
